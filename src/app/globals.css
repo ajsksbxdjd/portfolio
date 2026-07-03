@@ -105,8 +105,8 @@ body {
   overflow: hidden;
   isolation: isolate;
   background: var(--surface);
-  backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
   border: 1px solid var(--border);
   box-shadow:
     inset 0 1px 0 var(--glass-hi),
@@ -134,8 +134,8 @@ body {
   background-image:
     linear-gradient(135deg, rgba(var(--accent-rgb), 0.35) 0%, rgba(var(--accent-2-rgb), 0.18) 100%),
     linear-gradient(var(--surface), var(--surface));
-  backdrop-filter: blur(24px) saturate(200%);
   -webkit-backdrop-filter: blur(24px) saturate(200%);
+  backdrop-filter: blur(24px) saturate(200%);
   color: var(--foreground);
   border: 1px solid rgba(var(--accent-rgb), 0.4);
   box-shadow:
@@ -172,8 +172,8 @@ body {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.4s ease;
-  backdrop-filter: blur(16px) saturate(80%);
   -webkit-backdrop-filter: blur(16px) saturate(80%);
+  backdrop-filter: blur(16px) saturate(80%);
   -webkit-mask-image: radial-gradient(150px circle at var(--mx, 50%) var(--my, 50%), black 0%, transparent 100%);
   mask-image: radial-gradient(150px circle at var(--mx, 50%) var(--my, 50%), black 0%, transparent 100%);
 }
@@ -186,8 +186,8 @@ body {
    blur than .glass so page content never bleeds through it. */
 .glass-nav {
   background: var(--nav-surface);
-  backdrop-filter: blur(32px) saturate(180%);
   -webkit-backdrop-filter: blur(32px) saturate(180%);
+  backdrop-filter: blur(32px) saturate(180%);
   border-bottom: 1px solid var(--nav-border);
   box-shadow: 0 8px 32px var(--nav-shadow);
   transition: box-shadow 0.25s ease;
