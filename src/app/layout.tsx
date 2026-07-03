@@ -3,6 +3,7 @@ import { Poppins, Nunito } from "next/font/google";
 import { profile } from "@/data/data";
 import ThemeProvider from "@/components/ThemeProvider";
 import AmbientBackground from "@/components/AmbientBackground";
+import CursorGlow from "@/components/CursorGlow";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -40,6 +41,7 @@ export default function RootLayout({
       <body className="min-h-full bg-background font-sans text-foreground antialiased">
         <ThemeProvider>
           <AmbientBackground />
+          <CursorGlow />
           {children}
         </ThemeProvider>
       </body>

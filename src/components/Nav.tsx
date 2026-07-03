@@ -41,13 +41,13 @@ export default function Nav() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled ? "glass border-b-0 shadow-none" : "border-b border-transparent"
+        "glass-nav fixed inset-x-0 top-0 z-50",
+        scrolled && "shadow-lg"
       )}
     >
       <nav className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
         <a href="#top" className="flex items-center gap-2.5">
-          <span className="glass-btn flex h-10 w-10 items-center justify-center rounded-2xl font-display text-xs font-bold tracking-tight">
+          <span className="glass flex h-11 w-11 items-center justify-center rounded-2xl font-display text-xs font-extrabold tracking-tight text-foreground">
             SW
           </span>
           <span className="hidden font-display text-sm font-bold tracking-tight text-foreground sm:inline">
@@ -86,9 +86,9 @@ export default function Nav() {
           <a
             href={profile.resumeUrl}
             download
-            className="glass-btn inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold uppercase tracking-widest transition-transform hover:scale-[1.03]"
+            className="glass inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-extrabold uppercase tracking-widest text-foreground transition-transform hover:scale-[1.03]"
           >
-            <Download size={14} />
+            <Download size={15} />
             Resume
           </a>
         </div>
@@ -107,7 +107,7 @@ export default function Nav() {
       </nav>
 
       {menuOpen && (
-        <div className="glass border-t-0 min-[600px]:hidden">
+        <div className="glass-nav border-t-0 min-[600px]:hidden">
           <ul className="flex flex-col gap-1 px-6 py-4">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -124,9 +124,9 @@ export default function Nav() {
               <a
                 href={profile.resumeUrl}
                 download
-                className="glass-btn inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold uppercase tracking-widest"
+                className="glass inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-extrabold uppercase tracking-widest text-foreground"
               >
-                <Download size={14} />
+                <Download size={15} />
                 Resume
               </a>
             </li>

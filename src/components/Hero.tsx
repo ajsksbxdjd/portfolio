@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { ArrowDown, Download, Mail } from "lucide-react";
 import { profile } from "@/data/data";
 import { GithubIcon, LinkedinIcon } from "./ui/icons";
@@ -32,19 +31,6 @@ export default function Hero() {
         animate="visible"
         className="relative mx-auto w-full max-w-5xl"
       >
-        <motion.div variants={item} className="mb-7">
-          <div className="glass-btn inline-flex h-24 w-24 items-center justify-center rounded-full p-1 sm:h-28 sm:w-28">
-            <Image
-              src="/profile.jpg"
-              alt={profile.name}
-              width={112}
-              height={112}
-              priority
-              className="h-full w-full rounded-full object-cover"
-            />
-          </div>
-        </motion.div>
-
         <motion.p
           variants={item}
           className="mb-6 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted"
@@ -78,9 +64,9 @@ export default function Hero() {
           <a
             href={profile.resumeUrl}
             download
-            className="glass-btn inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-base font-bold transition-transform hover:scale-[1.03]"
+            className="glass inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-base font-extrabold text-foreground transition-transform hover:scale-[1.03]"
           >
-            <Download size={17} />
+            <Download size={18} />
             Download Resume
           </a>
 

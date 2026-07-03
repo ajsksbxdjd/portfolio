@@ -11,39 +11,47 @@
   --muted: #4a677e;
   --accent: #17b6cf;
   --accent-2: #7c6cff;
+  --accent-rgb: 23, 182, 207;
+  --accent-2-rgb: 124, 108, 255;
   --accent-soft: rgba(23, 182, 207, 0.18);
 
-  --blob-a: #8fe3ff;
-  --blob-b: #c2b3ff;
-  --blob-c: #9df0c7;
+  --blob-a: #4fd2ff;
+  --blob-b: #b092ff;
+  --blob-c: #57e6ac;
+  --blob-d: #6fa8ff;
 
   --glass-hi: rgba(255, 255, 255, 0.9);
   --glass-lo: rgba(20, 40, 70, 0.1);
 
-  --btn-tint: rgba(23, 182, 207, 0.22);
-  --btn-border: rgba(23, 182, 207, 0.45);
+  --nav-surface: rgba(255, 255, 255, 0.72);
+  --nav-border: rgba(15, 42, 61, 0.1);
+  --nav-shadow: rgba(20, 40, 70, 0.14);
 }
 
 .dark {
   --background: #060a16;
-  --surface: rgba(255, 255, 255, 0.045);
-  --surface-2: rgba(255, 255, 255, 0.08);
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-2: rgba(255, 255, 255, 0.1);
   --border: rgba(255, 255, 255, 0.16);
   --foreground: #eaf4ff;
   --muted: #93a9c0;
   --accent: #4be3ff;
   --accent-2: #a78bff;
+  --accent-rgb: 75, 227, 255;
+  --accent-2-rgb: 167, 139, 255;
   --accent-soft: rgba(75, 227, 255, 0.18);
 
-  --blob-a: #1f5f9e;
-  --blob-b: #5a35b8;
-  --blob-c: #13906f;
+  --blob-a: #2a72c4;
+  --blob-b: #7440d6;
+  --blob-c: #16b088;
+  --blob-d: #3f5fdb;
 
   --glass-hi: rgba(255, 255, 255, 0.14);
   --glass-lo: rgba(0, 0, 0, 0.4);
 
-  --btn-tint: rgba(75, 227, 255, 0.16);
-  --btn-border: rgba(75, 227, 255, 0.4);
+  --nav-surface: rgba(8, 12, 22, 0.65);
+  --nav-border: rgba(255, 255, 255, 0.12);
+  --nav-shadow: rgba(0, 0, 0, 0.5);
 }
 
 @theme inline {
@@ -90,8 +98,12 @@ body {
   text-wrap: balance;
 }
 
-/* Frosted glass panel, the core "liquid glass" surface */
+/* Frosted glass panel, the core "liquid glass" surface used for cards,
+   chips, and icon buttons. */
 .glass {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   background: var(--surface);
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
@@ -99,24 +111,111 @@ body {
   box-shadow:
     inset 0 1px 0 var(--glass-hi),
     0 8px 32px var(--glass-lo);
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
-
-/* Pastel see-through glass pill, used for primary CTAs and the logo mark */
-.glass-btn {
-  background: var(--btn-tint);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  color: var(--foreground);
-  border: 1px solid var(--btn-border);
+.glass:hover {
+  background: var(--surface-2);
+  border-color: rgba(var(--accent-rgb), 0.32);
   box-shadow:
     inset 0 1px 0 var(--glass-hi),
-    0 8px 24px var(--glass-lo);
+    0 10px 36px var(--glass-lo);
 }
 
-@keyframes float {
+/* Accent-tinted glass pill for primary CTAs and the logo mark: same frosted
+   base as .glass, with a soft blue gradient sheen so it still reads as the
+   primary action. */
+.glass-btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background-image:
+    linear-gradient(135deg, rgba(var(--accent-rgb), 0.35) 0%, rgba(var(--accent-2-rgb), 0.18) 100%),
+    linear-gradient(var(--surface), var(--surface));
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  color: var(--foreground);
+  border: 1px solid rgba(var(--accent-rgb), 0.4);
+  box-shadow:
+    inset 0 1px 0 var(--glass-hi),
+    0 8px 28px rgba(var(--accent-rgb), 0.25);
+  transition:
+    background-image 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
+}
+.glass-btn:hover {
+  background-image:
+    linear-gradient(135deg, rgba(var(--accent-rgb), 0.48) 0%, rgba(var(--accent-2-rgb), 0.26) 100%),
+    linear-gradient(var(--surface-2), var(--surface-2));
+  border-color: rgba(var(--accent-rgb), 0.6);
+  box-shadow:
+    inset 0 1px 0 var(--glass-hi),
+    0 10px 36px rgba(var(--accent-rgb), 0.38);
+}
+
+/* Localized cursor-tracking frost: an actual backdrop blur (not a light
+   overlay), masked to a soft circle that tracks the pointer (position set
+   via --mx/--my from CursorGlow.tsx). Negative z-index keeps it behind the
+   card's real content — with `isolation: isolate` on the parent containing
+   that z-index locally, so text/icons always stay sharp on top. */
+.glass::after,
+.glass-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  backdrop-filter: blur(16px) saturate(80%);
+  -webkit-backdrop-filter: blur(16px) saturate(80%);
+  -webkit-mask-image: radial-gradient(150px circle at var(--mx, 50%) var(--my, 50%), black 0%, transparent 100%);
+  mask-image: radial-gradient(150px circle at var(--mx, 50%) var(--my, 50%), black 0%, transparent 100%);
+}
+.glass:hover::after,
+.glass-btn:hover::after {
+  opacity: 1;
+}
+
+/* Persistent frosted-glass toolbar for the sticky nav: higher opacity and
+   blur than .glass so page content never bleeds through it. */
+.glass-nav {
+  background: var(--nav-surface);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border-bottom: 1px solid var(--nav-border);
+  box-shadow: 0 8px 32px var(--nav-shadow);
+  transition: box-shadow 0.25s ease;
+}
+
+@keyframes drift-a {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(18px, -28px) scale(1.06); }
+  25% { transform: translate(150px, -110px) scale(1.15); }
+  50% { transform: translate(50px, 90px) scale(0.88); }
+  75% { transform: translate(-110px, -60px) scale(1.1); }
 }
-.animate-float {
-  animation: float 11s ease-in-out infinite;
+@keyframes drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  30% { transform: translate(-130px, 100px) scale(1.12); }
+  60% { transform: translate(90px, -80px) scale(0.86); }
+  85% { transform: translate(45px, 110px) scale(1.08); }
 }
+@keyframes drift-c {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  35% { transform: translate(110px, 105px) scale(1.18); }
+  65% { transform: translate(-90px, -100px) scale(0.84); }
+}
+@keyframes drift-d {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(-95px, -120px) scale(1.15); }
+  70% { transform: translate(120px, 50px) scale(0.87); }
+}
+.animate-drift-a { animation: drift-a 18s ease-in-out infinite; }
+.animate-drift-b { animation: drift-b 20s ease-in-out infinite; }
+.animate-drift-c { animation: drift-c 16s ease-in-out infinite; }
+.animate-drift-d { animation: drift-d 19s ease-in-out infinite; }

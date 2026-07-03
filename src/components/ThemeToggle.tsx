@@ -11,7 +11,7 @@ export default function ThemeToggle() {
   useEffect(() => setMounted(true), []);
 
   if (!mounted) {
-    return <div className="h-9 w-9 shrink-0" aria-hidden="true" />;
+    return <div className="h-11 w-11 shrink-0" aria-hidden="true" />;
   }
 
   const isDark = resolvedTheme === "dark";
@@ -21,9 +21,9 @@ export default function ThemeToggle() {
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label="Toggle color theme"
-      className="glass inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-muted transition-colors hover:text-accent"
+      className="glass inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-muted transition-colors hover:text-accent"
     >
-      {isDark ? <Sun size={15} /> : <Moon size={15} />}
+      {isDark ? <Sun size={16} /> : <Moon size={16} />}
     </button>
   );
 }
