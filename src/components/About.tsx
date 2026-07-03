@@ -17,10 +17,10 @@ export default function About() {
         </Reveal>
 
         <Reveal delay={0.15}>
-          <dl className="divide-y divide-border rounded-2xl border border-border bg-surface/50">
+          <dl className="glass divide-y divide-border rounded-3xl">
             {about.facts.map((fact) => (
               <div key={fact.label} className="flex flex-col gap-1 px-5 py-4">
-                <dt className="font-mono text-xs uppercase tracking-widest text-muted">
+                <dt className="text-xs font-bold uppercase tracking-widest text-muted">
                   {fact.label}
                 </dt>
                 <dd className="text-sm text-foreground">{fact.value}</dd>

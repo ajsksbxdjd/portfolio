@@ -1,14 +1,49 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #08090a;
-  --surface: #0f1113;
-  --surface-2: #16181b;
-  --border: #232629;
-  --foreground: #ededf0;
-  --muted: #9a9ea5;
-  --accent: #4ee1a0;
-  --accent-dim: #2b8f68;
+  --background: #eaf4fb;
+  --surface: rgba(255, 255, 255, 0.4);
+  --surface-2: rgba(255, 255, 255, 0.24);
+  --border: rgba(255, 255, 255, 0.65);
+  --foreground: #0f2a3d;
+  --muted: #4a677e;
+  --accent: #17b6cf;
+  --accent-2: #7c6cff;
+  --accent-soft: rgba(23, 182, 207, 0.18);
+
+  --blob-a: #8fe3ff;
+  --blob-b: #c2b3ff;
+  --blob-c: #9df0c7;
+
+  --glass-hi: rgba(255, 255, 255, 0.9);
+  --glass-lo: rgba(20, 40, 70, 0.1);
+
+  --btn-tint: rgba(23, 182, 207, 0.22);
+  --btn-border: rgba(23, 182, 207, 0.45);
+}
+
+.dark {
+  --background: #060a16;
+  --surface: rgba(255, 255, 255, 0.045);
+  --surface-2: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.16);
+  --foreground: #eaf4ff;
+  --muted: #93a9c0;
+  --accent: #4be3ff;
+  --accent-2: #a78bff;
+  --accent-soft: rgba(75, 227, 255, 0.18);
+
+  --blob-a: #1f5f9e;
+  --blob-b: #5a35b8;
+  --blob-c: #13906f;
+
+  --glass-hi: rgba(255, 255, 255, 0.14);
+  --glass-lo: rgba(0, 0, 0, 0.4);
+
+  --btn-tint: rgba(75, 227, 255, 0.16);
+  --btn-border: rgba(75, 227, 255, 0.4);
 }
 
 @theme inline {
@@ -19,9 +54,9 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
-  --color-accent-dim: var(--accent-dim);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent-2: var(--accent-2);
+  --font-sans: var(--font-nunito);
+  --font-display: var(--font-poppins);
 }
 
 html {
@@ -31,18 +66,19 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
   background: var(--accent);
-  color: #06110c;
+  color: #ffffff;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--surface-2);
@@ -50,22 +86,37 @@ body {
   border: 2px solid var(--background);
 }
 
-/* Faint technical grid backdrop used behind the hero */
-.bg-grid {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 44px 44px;
-}
-
 .text-balance {
   text-wrap: balance;
 }
 
-@keyframes blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
+/* Frosted glass panel, the core "liquid glass" surface */
+.glass {
+  background: var(--surface);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid var(--border);
+  box-shadow:
+    inset 0 1px 0 var(--glass-hi),
+    0 8px 32px var(--glass-lo);
 }
-.animate-blink {
-  animation: blink 1.1s step-start infinite;
+
+/* Pastel see-through glass pill, used for primary CTAs and the logo mark */
+.glass-btn {
+  background: var(--btn-tint);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  color: var(--foreground);
+  border: 1px solid var(--btn-border);
+  box-shadow:
+    inset 0 1px 0 var(--glass-hi),
+    0 8px 24px var(--glass-lo);
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(18px, -28px) scale(1.06); }
+}
+.animate-float {
+  animation: float 11s ease-in-out infinite;
 }

@@ -1,12 +1,12 @@
 // Single source of truth for all editable site content.
-// Update this file to change names, copy, projects, or links —
-// no need to touch component code.
+// Update this file to change names, copy, projects, or links.
+// No need to touch component code.
 
 export const profile = {
   name: "Siew Wei En",
   role: "AI / ML Engineer",
   tagline:
-    "AI engineer who ships end-to-end systems — from model training to production deployment.",
+    "AI engineer who ships end-to-end systems, from model training to production deployment.",
   location: "Kuala Lumpur, Malaysia",
   email: "weiensiew@gmail.com",
   github: "https://github.com/ajsksbxdjd",
@@ -16,9 +16,9 @@ export const profile = {
 
 export const about = {
   paragraphs: [
-    "I'm a Bachelor of Computer Science (Artificial Intelligence) student at Universiti Malaya, with one semester left before I graduate. My current CGPA is 3.75. I care about the unglamorous parts of AI as much as the modeling — data pipelines, evaluation, latency, and the deployment surface that turns a notebook result into something people can actually use.",
-    "Most recently I interned as a Gen AI Business Automation Intern at Maxis, working on applied generative AI use cases — including a self-initiated GenAI proof-of-concept that I proposed to leadership and built end to end — in a production enterprise environment. Outside of that, I've spent the past year building full-stack AI products end to end: training and evaluating models, wiring up backends, and shipping usable interfaces around them.",
-    "I'm most interested in applied AI, GenAI, and agentic systems — LLM-powered products that reason over real data and take useful actions. I learn fast, and I'd rather ship a working v1 and iterate than stay stuck in planning.",
+    "I'm a final-year Computer Science (AI) student at Universiti Malaya (CGPA 3.75), one semester from graduating. I care about the parts of AI that make a model actually usable, like data pipelines, evaluation, and deployment, not just the modeling. I've built these into my own projects and want to get properly good at them at production scale.",
+    "I recently interned at Maxis as a Gen AI Business Automation Intern, working on applied generative AI in a production enterprise environment. That included a GenAI proof-of-concept I proposed and built end to end. Alongside that, I've spent the past year building full-stack AI products, including my AI final-year project: training and evaluating models, wiring up backends, and shipping usable interfaces around them.",
+    "I'm most interested in applied AI, GenAI, and agentic systems: LLM-powered products that reason over real data and take useful actions. I'm a fast learner who'd rather ship a working v1 and iterate than get stuck planning, and I want to do that alongside people who build AI at real scale.",
   ],
   facts: [
     { label: "Education", value: "BCS (Artificial Intelligence), Universiti Malaya" },

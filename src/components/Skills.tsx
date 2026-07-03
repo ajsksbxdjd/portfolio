@@ -12,16 +12,16 @@ export default function Skills() {
           <Reveal
             key={group.category}
             delay={(i % 2) * 0.08}
-            className="rounded-2xl border border-border bg-surface/50 p-6"
+            className="glass rounded-3xl p-6"
           >
-            <h3 className="font-mono text-xs uppercase tracking-widest text-accent">
+            <h3 className="font-display text-xs font-bold uppercase tracking-widest text-accent">
               {group.category}
             </h3>
             <ul className="mt-4 flex flex-wrap gap-2">
               {group.items.map((skill) => (
                 <li
                   key={skill}
-                  className="rounded-full border border-border bg-surface-2 px-3 py-1.5 text-sm text-foreground"
+                  className="glass rounded-full px-3 py-1.5 text-sm text-foreground"
                 >
                   {skill}
                 </li>

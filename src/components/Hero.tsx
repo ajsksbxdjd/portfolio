@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowDown, Download, Mail } from "lucide-react";
 import { profile } from "@/data/data";
 import { GithubIcon, LinkedinIcon } from "./ui/icons";
@@ -25,18 +26,28 @@ export default function Hero() {
       id="top"
       className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6 pt-16"
     >
-      <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_35%,#000_10%,transparent_75%)]" />
-      <div className="pointer-events-none absolute left-1/2 top-1/3 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[120px]" />
-
       <motion.div
         variants={container}
         initial="hidden"
         animate="visible"
         className="relative mx-auto w-full max-w-5xl"
       >
+        <motion.div variants={item} className="mb-7">
+          <div className="glass-btn inline-flex h-24 w-24 items-center justify-center rounded-full p-1 sm:h-28 sm:w-28">
+            <Image
+              src="/profile.jpg"
+              alt={profile.name}
+              width={112}
+              height={112}
+              priority
+              className="h-full w-full rounded-full object-cover"
+            />
+          </div>
+        </motion.div>
+
         <motion.p
           variants={item}
-          className="mb-6 flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted"
+          className="mb-6 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted"
         >
           <span className="inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
           Available for AI engineering internships
@@ -44,14 +55,14 @@ export default function Hero() {
 
         <motion.h1
           variants={item}
-          className="text-balance text-5xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-7xl"
+          className="text-balance font-display text-5xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-7xl"
         >
           {profile.name}
         </motion.h1>
 
         <motion.p
           variants={item}
-          className="mt-4 font-mono text-lg text-accent sm:text-xl"
+          className="mt-4 font-display text-lg font-semibold text-accent sm:text-xl"
         >
           {profile.role}
         </motion.p>
@@ -67,37 +78,37 @@ export default function Hero() {
           <a
             href={profile.resumeUrl}
             download
-            className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-mono text-sm font-medium text-[#06110c] transition-transform hover:scale-[1.03]"
+            className="glass-btn inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-base font-bold transition-transform hover:scale-[1.03]"
           >
-            <Download size={15} />
+            <Download size={17} />
             Download Resume
           </a>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <a
               href={profile.github}
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted transition-colors hover:border-accent hover:text-accent"
+              className="glass inline-flex h-12 w-12 items-center justify-center rounded-full text-muted transition-colors hover:text-accent"
             >
-              <GithubIcon size={18} />
+              <GithubIcon size={20} />
             </a>
             <a
               href={profile.linkedin}
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted transition-colors hover:border-accent hover:text-accent"
+              className="glass inline-flex h-12 w-12 items-center justify-center rounded-full text-muted transition-colors hover:text-accent"
             >
-              <LinkedinIcon size={18} />
+              <LinkedinIcon size={20} />
             </a>
             <a
               href={`mailto:${profile.email}`}
               aria-label="Email"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted transition-colors hover:border-accent hover:text-accent"
+              className="glass inline-flex h-12 w-12 items-center justify-center rounded-full text-muted transition-colors hover:text-accent"
             >
-              <Mail size={18} />
+              <Mail size={20} />
             </a>
           </div>
         </motion.div>
